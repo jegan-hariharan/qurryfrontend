@@ -13,7 +13,13 @@ services:
     restart: always
     ports:
       - "8081:8081"
-      
+ Environment:
+ 
+   spring.jpa.hibernate.ddl-auto=update
+   spring.datasource.url= jdbc:mysql://trojandevdb1.cerph5j4goq3.ap-south-1.rds.amazonaws.com:3306/test
+   spring.datasource.username=devdb
+   spring.datasource.password=Trojan123!
+   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
    
     volumes :
       - /home/jegan/Desktop/data:/var/lib/postgresql/data
