@@ -1,20 +1,19 @@
 version: "3.3"
 services:
- api:
-   container_name: flaskapp
-   image: flaskapp:v1
+ frontend:
+   container_name: qurryfrontend
+   image: frontend:v1
    ports:
-    - "5000:5000"
-   environment:
-    - PSQL_URL=postgresql://postgres:mysecretpassword@some-postgres/postgres
+    - "8080:80"
+   
 
- postgres:
-    image: postgres:14.1-alpine
-    container_name : some-postgres
+ backend:
+    image: backend:v1
+    container_name : qurrybackend
     restart: always
     ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_PASSWORD=mysecretpassword
+      - "8081:8081"
+      
+   
     volumes :
-      - /home/leena/Desktop/data:/var/lib/postgresql/data
+      - /home/jegan/Desktop/data:/var/lib/postgresql/data
