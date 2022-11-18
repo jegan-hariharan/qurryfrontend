@@ -1,0 +1,30 @@
+  <ion-tabs >
+    <ion-tab-bar class="ion-justify-content-evenly" slot="bottom" >
+      <div *ngIf="['1','2'].includes(roleId)">
+        <ion-tab-button tab="tab1" >
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Dashboard</ion-label>
+        </ion-tab-button>
+      </div>
+      <div *ngIf="['1','2','3'].includes(roleId)">
+        <ion-tab-button tab="tab2">
+          <ion-icon name="calendar-outline"></ion-icon>
+        <ion-label>Quarry</ion-label>
+        </ion-tab-button>
+      </div>
+      <!-- <div *ngIf="['1','2'].includes(roleId)">
+        <ion-tab-button tab="tab3">
+          <ion-icon name="trophy-outline"></ion-icon>
+          <ion-label>Employee</ion-label>
+        </ion-tab-button>
+      </div> -->
+      <div *ngIf="['1','2','3'].includes(roleId)">
+        <ion-tab-button tab="tab4">
+          <ion-icon name="person-outline"></ion-icon>
+        <ion-label>MY ACCOUNT</ion-label>
+        </ion-tab-button>
+      </div>
+    </ion-tab-bar>
+  </ion-tabs>
+
+

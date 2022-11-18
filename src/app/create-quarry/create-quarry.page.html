@@ -1,0 +1,130 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="8" offset-md="2" size-lg="6" offset-lg="3">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">
+            <ion-icon name="book-outline" size="large"></ion-icon>
+              <ion-text>
+              <h4>Create Quarry</h4>
+            </ion-text></ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="createQuarryForm" (ngSubmit)="onSubmit(createQuarryForm.value)">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Quarry Name</ion-label>
+                      <ion-input type="text" formControlName="quarryName"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.quarryName.errors">
+                      <div *ngIf="f.quarryName.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Quarry name is required</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Quarry Owner</ion-label>
+                      <ion-input type="text" formControlName="quarryOwner"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.quarryOwner.errors">
+                      <div *ngIf="f.quarryOwner.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Owner is required</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Email Id</ion-label>
+                      <ion-input type="email" formControlName="quarryMail"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.qua">
+                      <div *ngIf="f.quarryMail.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Email is required</span>
+                      </div>
+                    </div>
+                    <div *ngIf="isSubmitting &&  f.quarryMail.errors">
+                      <div *ngIf="f.quarryMail.errors.email">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Email Id is not valid</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Mobile Number</ion-label>
+                      <ion-input type="number" formControlName="phoneNumber"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.phoneNumber.errors">
+                      <div *ngIf="f.phoneNumber.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Mobile number is required</span>
+                      </div>
+                    </div>
+                    <div *ngIf="isSubmitting &&  f.phoneNumber.errors">
+                      <div *ngIf="f.phoneNumber.errors.pattern">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Enter 10 digit mobile number</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Address</ion-label>
+                      <ion-input type="textarea" formControlName="fullAddress"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <div *ngIf="isSubmitting &&  f.fullAddress.errors">
+                    <div *ngIf="f.fullAddress.errors.required">
+                      <span class="text-danger open-sans fs-5 fw-bold">* Address is required</span>
+                    </div>
+                  </div>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">GSTN</ion-label>
+                      <ion-input type="text" formControlName="quarryGstn"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.quarryGstn.errors">
+                      <div *ngIf="f.quarryGstn.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* GSTN is required</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">License No.</ion-label>
+                      <ion-input type="text" formControlName="quarryLicense"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.quarryLicense.errors">
+                      <div *ngIf="f.quarryLicense.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* License is required</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">License No.</ion-label>
+                      <ion-input type="date" formControlName="quarryValidity"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.quarryValidity.errors">
+                      <div *ngIf="f.quarryValidity.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Period of validity is required</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="ion-text-center">
+                  <ion-col size="12">
+                    <ion-button type="submit" color="primary" expand="block">
+                      Submit
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

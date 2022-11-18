@@ -1,0 +1,90 @@
+<ion-content>
+  <ion-grid >
+    <ion-row>
+      <ion-col size-md="6" offset-md="3"><ion-card >
+        <ion-card-header>
+          <ion-card-title class="ion-text-center">
+          <ion-icon name="book-outline" size="large"></ion-icon>
+            <ion-text>
+            <h4>Quarry Management</h4>
+          </ion-text></ion-card-title>
+        </ion-card-header>
+        <ion-card-content >
+          <form [formGroup]="userLoginForm" (ngSubmit)="onLogin(userLoginForm.value)">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12">
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-label position="floating">Select Role</ion-label>
+                    <ion-select formControlName="userRole">
+                      <ion-select-option value="admin">ADMIN</ion-select-option>
+                      <ion-select-option value="manager">MANAGER</ion-select-option>
+                      <ion-select-option value="employee">ENTRY IN OPERATOR</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <div *ngIf="isSubmitting &&  f.userRole.errors">
+                    <div *ngIf="f.userRole.errors.required">
+                      <span class="text-danger open-sans fs-5 fw-bold">* Role is required</span>
+                    </div>
+                  </div>
+                </ion-col>
+                <ion-item>
+                  <ion-icon name="mail" size="small"></ion-icon> &nbsp;
+                  <ion-input formControlName="userMail" placeholder="Email-Id"></ion-input>
+                </ion-item>
+                <div *ngIf="isSubmitting && f.userMail.errors">
+                  <div *ngIf="f.userMail.errors.required">
+                    <span class="text-danger open-sans fs-5 fw-bold">* Email-Id is required</span>
+                  </div>
+                </div>
+                <div *ngIf="isSubmitting && f.userMail.errors">
+                  <div *ngIf="f.userMail.errors.email">
+                    <span class="text-danger open-sans fs-5 fw-bold">* Email-Id is not valid</span>
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-icon name="key" size="small"></ion-icon> &nbsp;
+                  <ion-input formControlName="userPassword" [type]="showPassword ? 'text':'password'" placeholder="Password"></ion-input> <ion-icon slot="end" (click)="toggleChanges()" [name]="toggleButton"></ion-icon>
+                </ion-item >
+                <div *ngIf="isSubmitting && f.userPassword.errors">
+                  <div *ngIf="f.userPassword.errors.required">
+                    <span class="text-danger open-sans fs-5 fw-bold">* Password is required</span>
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+            <div >
+              <ion-button type="submit" class="ion-text-center ion-text wrap" color="primary" expand="block">
+                Log In
+              </ion-button>
+            </div>
+            <div class="ion-text-right">
+              <p class="">Did you <a [routerLink]="['forgot-password']"><strong>forgot your password?</strong></a></p>
+            </div>
+          </ion-grid>
+
+          </form>
+        </ion-card-content>
+        <ion-card-content  >
+          <ion-row class="ion-text-center">
+
+            <ion-col size="12">
+              <h2>Don't have an account? </h2>
+            </ion-col>
+            <ion-col size="12">
+              <ion-text  class="ion-text-capitalize">
+              <ion-button fill="outline" [routerLink]="'signup'">
+                Sign Up
+              </ion-button>
+            </ion-text></ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card></ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-content>

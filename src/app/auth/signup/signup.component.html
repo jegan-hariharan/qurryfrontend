@@ -1,0 +1,131 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="8" offset-md="2" size-lg="6" offset-lg="3">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">
+            <ion-icon name="book-outline" size="large"></ion-icon>
+              <ion-text>
+              <h4>Registration</h4>
+            </ion-text></ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="userSignupForm" (ngSubmit)="onSubmit(userSignupForm.value)">
+              <ion-grid>
+                <ion-row>
+                  <!-- <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Select Quarry</ion-label>
+                      <ion-select formControlName="quarry">
+                        <ion-select-option *ngFor="let quarryInfo of quarryList;" value="{{quarryInfo.quarryId}}">{{quarryInfo.quarryName}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.quarry.errors">
+                      <div *ngIf="f.quarry.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Quarry is required</span>
+                      </div>
+                    </div>
+                  </ion-col> -->
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Name</ion-label>
+                      <ion-input type="text" formControlName="fullName"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.fullName.errors">
+                      <div *ngIf="f.fullName.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Name is required</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Email Id / Username</ion-label>
+                      <ion-input type="email" formControlName="userMail"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.userMail.errors">
+                      <div *ngIf="f.userMail.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Email / Username is required</span>
+                      </div>
+                    </div>
+                    <div *ngIf="isSubmitting &&  f.userMail.errors">
+                      <div *ngIf="f.userMail.errors.email">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Email Id is not valid</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Address</ion-label>
+                      <ion-input type="textarea" formControlName="fullAddress"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Mobile Number</ion-label>
+                      <ion-input type="number" formControlName="phoneNumber"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.phoneNumber.errors">
+                      <div *ngIf="f.phoneNumber.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Mobile number is required</span>
+                      </div>
+                    </div>
+                    <div *ngIf="isSubmitting &&  f.phoneNumber.errors">
+                      <div *ngIf="f.phoneNumber.errors.pattern">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Enter 10 digit mobile number</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Password</ion-label>
+                      <ion-input type="password" formControlName="password"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.password.errors">
+                      <div *ngIf="f.password.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Password is required</span>
+                      </div>
+                    </div>
+                    <div *ngIf="isSubmitting &&  f.password.errors">
+                      <div *ngIf="f.password.errors.minLength">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Password should be minimum 8 characters</span>
+                      </div>
+                    </div>
+                    <div *ngIf="isSubmitting &&  f.password.errors">
+                      <div *ngIf="f.password.errors.maxLength">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Password should not more than 16 characters</span>
+                      </div>
+                    </div>
+                    <div *ngIf="isSubmitting &&  f.password.errors">
+                      <div *ngIf="f.password.errors.pattern">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Password should be the combination of Uppercase, Digit, Special Charater </span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Confirm Password</ion-label>
+                      <ion-input type="password" formControlName="confirmPassword"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting && f.confirmPassword.errors">
+                      <div *ngIf="f.confirmPassword.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Confirm Password is required</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="ion-text-center">
+                  <ion-col size="12">
+                    <ion-button type="submit" color="primary" expand="block">
+                      Submit
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

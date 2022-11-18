@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{quarryName}} - Add Vehicle Owner</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="8" offset-md="2" size-lg="6" offset-lg="3">
+        <ion-card>
+          <ion-card-content>
+            <form [formGroup]="addVehicleOwnerForm" (ngSubmit)="onSubmit(addVehicleOwnerForm.value)">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Owner Name</ion-label>
+                      <ion-input type="text" formControlName="ownerName"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.ownerName.errors">
+                      <div *ngIf="f.ownerName.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Owner name is required</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Owner Mobile Number</ion-label>
+                      <ion-input type="number" formControlName="phoneNumber"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.phoneNumber.errors">
+                      <div *ngIf="f.phoneNumber.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Owner mobile number is required</span>
+                      </div>
+                    </div>
+                    <div *ngIf="isSubmitting &&  f.phoneNumber.errors">
+                      <div *ngIf="f.phoneNumber.errors.pattern">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Enter 10 digit mobile number</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Address</ion-label>
+                      <ion-input type="textarea" formControlName="fullAddress"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.fullAddress.errors">
+                      <div *ngIf="f.fullAddress.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Owner Address is required</span>
+                      </div>
+                    </div>
+                  </ion-col>          
+                </ion-row>
+                <ion-row class="ion-text-center">
+                  <ion-col size="12">
+                    <ion-button type="submit" color="primary" expand="block">
+                      Create Truck Vehicle
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{quarryName}} - Product List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="ion-text-center">
+    <ion-col size="12">
+      <ion-button type="button" color="primary" expand="block" (click)="addProduct()">
+        Add Product
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-item *ngFor="let product of productList; let i = index" >
+          <ion-text class="ion-text-primary">{{product.productName}}</ion-text>
+          <ion-icon color="primary" slot="end" name="create-outline" (click)="editProduct(i)"></ion-icon>
+          <ion-icon *ngIf="product.isActive == true" color="success" slot="end" name="checkmark-circle-outline" (click)="editStatus(i)"></ion-icon>
+          <ion-icon *ngIf="product.isActive == false" color="danger" slot="end" name="close-circle-outline" (click)="editStatus(i)"></ion-icon>
+          <ion-icon slot="end" name="chevron-forward-circle-outline" (click)="onclickProduct(i)"></ion-icon>
+        </ion-item>
+        <ion-item *ngIf="this.productEmpty">
+          <ion-text class="text-danger">Product not yet configured.</ion-text>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

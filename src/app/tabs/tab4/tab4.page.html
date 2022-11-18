@@ -1,0 +1,64 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-grid fixed>
+        <ion-row>
+         <ion-col size="3">
+         </ion-col>
+          <ion-col  class="ion-text-center"size="6">
+            <ion-title color="primary">My Account</ion-title>
+          </ion-col>
+          <ion-col class="ion-text-end" size="3">
+          </ion-col>
+         </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content  [fullscreen]="true">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-md="6" offset-md="3">
+          <ion-item lines="none"class="ion-text-center">
+            <p class="p-tag">
+              <ion-icon color="primary" name="person-circle-outline"></ion-icon>
+            </p>
+          </ion-item>
+  
+          <ion-item lines="none">
+            <ion-label>Name</ion-label>
+            <ion-text color="primary"> {{userName}} </ion-text>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Role</ion-label>
+            <ion-text color="primary"> {{role}} </ion-text>
+          </ion-item>
+  
+          <ion-item lines="none"(click)="changePassword()">
+            <ion-label >Change Password</ion-label>
+            <ion-icon  color="primary" slot="end" name="caret-forward"></ion-icon>
+          </ion-item>  
+
+          <ion-item lines="none">
+            <p>
+              Change Mode
+            </p>
+            <ion-icon slot="end" [name]="iconName"></ion-icon>
+            <ion-toggle color="primary" [checked] ="toggle" slot="end" (ionChange)="toogleTheme($event)"></ion-toggle>
+          </ion-item>
+  
+          <ion-item lines="none">
+            <ion-label>About</ion-label>
+            <ion-text color="primary"> Quarry Manager </ion-text>
+          </ion-item>
+  
+  
+  
+          <ion-item button (click)="onLogout()">
+            <ion-label color="primary"> LogOut </ion-label>
+            <ion-icon color="primary" name="log-out-outline"></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+  

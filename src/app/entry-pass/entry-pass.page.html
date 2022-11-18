@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{quarryName}} - Entry Pass</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-searchbar [formControl]="serviceSearchForm.controls.vehicle" placeholder="search vehicle"
+      (ionInput)="onClickSearchLocation($event)"></ion-searchbar>
+    </ion-row>
+    <ion-item *ngFor="let vehicle of vehicleList" (click)="onClickVehicle(vehicle.truckId)">
+      <ion-text>
+        {{ vehicle.truckNo }}
+      </ion-text>
+    </ion-item>
+    <div *ngIf="vehicleEmpty">
+      <ion-row class="ion-text-center">
+        <ion-col size="12">
+          <ion-button color="primary" expand="block" (click)="onButtonClick('/tabs/add-vehicle')">
+            Add Vehicle
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

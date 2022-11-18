@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{quarryName}} - Menu List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-item (click)="onMenuClick('/tabs/product-list')">
+          <ion-text class="ion-text-primary">Products</ion-text>
+          <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+        </ion-item>
+        <ion-item (click)="onMenuClick('/tabs/challen-setup')">
+          <ion-text class="ion-text-primary">Challan Setup</ion-text>
+          <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+        </ion-item>
+        <ion-item (click)="onMenuClick('/tabs/user-list')">
+          <ion-text class="ion-text-primary">Users</ion-text>
+          <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+        </ion-item>
+        <ion-item (click)="onMenuClick('/tabs/entry-pass')"> 
+          <ion-text class="ion-text-center">Entry In</ion-text>
+          <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+        </ion-item>
+        <!-- <ion-item (click)="onMenuClick('/tabs/entry-out-search')"> 
+          <ion-text class="ion-text-center">Entry Out</ion-text>
+          <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+        </ion-item> -->
+        <ion-item (click)="onMenuClick('/tabs/load-entry-search')">
+          <ion-text class="ion-text-center">Load Entry</ion-text>
+          <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+        </ion-item>
+        <ion-item (click)="onMenuClick('/tabs/load-list')">
+          <ion-text class="ion-text-center">Load Details</ion-text>
+          <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+        </ion-item>
+        <ion-item (click)="onMenuClick('/tabs/report-field')">
+          <ion-text class="ion-text-center">Report</ion-text>
+          <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

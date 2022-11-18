@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>List</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let quarryInfo of quarryList;">
+    <ion-item>
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-icon name="eye-outline" slot="end" (click)="onView(quarryInfo.quarryId)"></ion-icon>
+      <ion-label>{{quarryInfo.quarryName}}</ion-label>
+      
+    </ion-item>
+  
+    <ion-card-header (click)="onClick(quarryInfo)">
+        <ion-card-subtitle>{{quarryInfo.quarryOwnerName}}</ion-card-subtitle>
+        <ion-card-subtitle>{{quarryInfo.quarryEmail}}</ion-card-subtitle>
+        <ion-card-subtitle>{{quarryInfo.quarryMobileNumber}}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{quarryName}} - Cost per unit setup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="unitCostForm" (ngSubmit)="onSubmit(unitCostForm.value)">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title class="ion-text-center">
+                <ion-text>
+                  <h5>{{productName}} Updated Price</h5>
+                </ion-text>
+              </ion-card-title>
+              <ion-card-title class="ion-text-center">
+                <ion-text color="primary">
+                  <h1>&#x20B9; {{latestUpdatedPrice | number}}</h1>
+                </ion-text>
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Cost / Unit</ion-label>
+            <ion-input type="number" formControlName="cost"></ion-input>
+          </ion-item>
+          <div *ngIf="isSubmitting && f.cost.errors">
+            <div *ngIf="f.cost.errors.required">
+              <span class="text-danger open-sans fs-5 fw-bold">* Cost is required</span>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center">
+        <ion-col size="12">
+          <ion-button type="submit" color="primary" expand="block">
+            Update Cost
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  <ion-grid *ngIf="!recordNull">
+    <ion-row>
+      <ion-col size-lg="6" offset-lg="3">
+        <ion-card>
+          <ion-card-header color="primary">
+            <ion-card-title class="ion-text-center">Unit Cost History
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item *ngFor="let unitCostInfo of unitCostList;">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label color="primary">&#x20B9;{{unitCostInfo.unitCost | number}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-text><ion-text>{{unitCostInfo.createdDate | date: 'dd-MM-yyyy hh:mm a'}}</ion-text></ion-text>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </ion-card-content>
+          <ion-card-content *ngIf="recordNull">
+            <ion-item>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="ion-text-center">Unit cost not yet configured.</ion-label>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

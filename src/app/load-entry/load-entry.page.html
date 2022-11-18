@@ -1,0 +1,146 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{quarryName}} - Load Entry</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="loadEntryForm" (ngSubmit)="onSubmit(loadEntryForm.value)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-lg="6" offset-lg="3">
+          <ion-card>
+            <ion-card-header color="primary">
+              <ion-card-title class="ion-text-center">{{loadInfo.truckDetail.truckNo}}
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="6"><ion-label color="primary">Truck Owner</ion-label></ion-col>
+                    <ion-col size="6"><ion-label color="primary">Owner Mobile No.</ion-label></ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="6">{{loadInfo.truckOwner.truckOwnerName}}</ion-col>
+                    <ion-col size="6">{{loadInfo.truckOwner.truckMobileNo}}</ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+              <ion-item>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12">
+                      <ion-label color="primary">Address</ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="12">
+                      <ion-text><ion-text>{{loadInfo.truckOwner.truckOwnerAddress}}</ion-text></ion-text>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+              <ion-item>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="6"><ion-label color="primary">Drive Name</ion-label></ion-col>
+                    <ion-col size="6"><ion-label color="primary">Drive Mobiel No.</ion-label></ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="6">{{loadInfo.truckDriverDetail.driverName}}</ion-col>
+                    <ion-col size="6">{{loadInfo.truckDriverDetail.driverMobileNo}}</ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+              <ion-item>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="6"><ion-label color="primary">Load Status</ion-label></ion-col>
+                    <ion-col size="6"><ion-label color="primary">Entry Status</ion-label></ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="6">{{loadStatus}}</ion-col>
+                    <ion-col size="6">{{entryStatus}}</ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+              <ion-item>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12">
+                      <ion-label color="primary">Truck In Time</ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="12">
+                      <ion-text><ion-text>{{loadInfo.vehicleInTime | date: 'dd-MM-yyyy hh:mm a'}}</ion-text></ion-text>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Select Product</ion-label>
+                <ion-select (ionChange)="onChangeProduct($event);" formControlName="productId">
+                  <ion-select-option *ngFor="let product of productList;" value="{{product.productId}}">{{product.productName}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-input formControlName="loadUnit" type="number" (ionInput)="onChangeUnits($event)" placeholder="Units in number" value="{{totalUnit}}"></ion-input>
+                    </ion-col>
+                    <ion-col size="6">
+                      <!-- <ion-label color="primary">Load Amount</ion-label> -->
+                      <ion-input formControlName="totalLoadAmount" type="number" readonly placeholder="Amount" value="{{totalLoadAmount}}"></ion-input>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Select Challan</ion-label>
+                <ion-select formControlName="isChallan" (ionChange)="onChangeChallan($event);">
+                  <ion-select-option value="0">Without Challan</ion-select-option>
+                  <ion-select-option value="1">With Challan</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item *ngIf="challanEnable">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-input formControlName="totalChallan" type="number" (ionInput)="onChangeChallanQuantity($event)" placeholder="No. of challan" value=""></ion-input>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-input formControlName="totalChallanAmount" type="number" readonly placeholder="Amount" value="{{totalChallanAmount}}"></ion-input>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Paymant Type</ion-label>
+                <ion-select formControlName="paymentType" (ionChange)="onChangePaymentType($event);">
+                  <ion-select-option value="0">Credit</ion-select-option>
+                  <ion-select-option value="1">Cash</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Total Amount</ion-label>
+                <ion-input formControlName="totalAmt" type="number" value="{{totalAmount}}"></ion-input>
+              </ion-item>
+              <ion-row class="ion-text-center">
+                <ion-col size="12">
+                  <div *ngIf="!this.loadInfo.loadStatus">
+                    <ion-button type="submit" color="primary" expand="block">
+                      Load It!
+                    </ion-button>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

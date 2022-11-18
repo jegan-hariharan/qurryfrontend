@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{quarryName}} - Add Vehicle</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button color="primary" expand="block" routerLink="/tabs/add-vehicle-owner">
+          Add Vehicle Owner
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-md="8" offset-md="2" size-lg="6" offset-lg="3">
+        <ion-card>
+          <ion-card-content>
+            <form [formGroup]="addVehicleForm" (ngSubmit)="onSubmit(addVehicleForm.value)">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Select Truck Owner</ion-label>
+                      <ion-select formControlName="ownerName">
+                        <ion-select-option *ngFor="let truckOwner of truckOwnerDetails" value="{{truckOwner.ownerId}}">{{truckOwner.truckOwnerName}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.ownerName.errors">
+                      <div *ngIf="f.ownerName.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Owner name is required</span>
+                      </div>
+                    </div>
+                  </ion-col> 
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Vehicle No.</ion-label>
+                      <ion-input type="text" formControlName="vehicleNo"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.vehicleNo.errors">
+                      <div *ngIf="f.vehicleNo.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Vehicle number is required</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Vehicle Capacity</ion-label>
+                      <ion-input type="text" formControlName="vehicleCapacity"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.vehicleCapacity.errors">
+                      <div *ngIf="f.vehicleCapacity.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Vehicle Capacity is required</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Driver Name</ion-label>
+                      <ion-input type="text" formControlName="driverName"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.driverName.errors">
+                      <div *ngIf="f.driverName.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Driver name is required</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Driver Mobile Number</ion-label>
+                      <ion-input type="text" formControlName="driverMobileNumber"></ion-input>
+                    </ion-item>
+                    <div *ngIf="isSubmitting &&  f.driverMobileNumber.errors">
+                      <div *ngIf="f.driverMobileNumber.errors.required">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Driver mobile number is required</span>
+                      </div>
+                    </div>
+                    <div *ngIf="isSubmitting &&  f.driverMobileNumber.errors">
+                      <div *ngIf="f.driverMobileNumber.errors.pattern">
+                        <span class="text-danger open-sans fs-5 fw-bold">* Enter 10 digit mobile number</span>
+                      </div>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="ion-text-center">
+                  <ion-col size="12">
+                    <ion-button type="submit" color="primary" expand="block">
+                      Add Vehicle
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

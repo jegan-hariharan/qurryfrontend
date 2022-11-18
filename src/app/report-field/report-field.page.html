@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reports</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="filterForm" (ngSubmit)="onSubmit(filterForm.value)">
+    <ion-item>
+      <ion-label position="floating">Select Product</ion-label>
+      <ion-select formControlName="productId">
+        <ion-select-option *ngFor="let product of productList;" value="{{product.productId}}">{{product.productName}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Select Owner</ion-label>
+      <ion-select formControlName="ownerId">
+        <ion-select-option *ngFor="let owner of ownerList;" value="{{owner.ownerId}}">{{owner.truckOwnerName}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Payment Type</ion-label>
+      <ion-select formControlName="paymentType">
+        <ion-select-option value="false">Credits</ion-select-option>
+        <ion-select-option value="true" >Cash</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Payment Status</ion-label>
+      <ion-select formControlName="paymentStatus">
+        <ion-select-option value="true">Success</ion-select-option>
+        <ion-select-option value="false">Pending</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">
+        <ion-icon slot="start" name="calendar-outline" color="primary"></ion-icon>
+        Start Date
+      </ion-label>
+      <ion-datetime-button datetime="datetime1" ></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime presentation="date" [showDefaultButtons]="true" formControlName="startDate" id="datetime1" ></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">
+        <ion-icon slot="start" name="calendar-outline" color="primary"></ion-icon>
+        End Date
+      </ion-label>
+      <ion-datetime-button datetime="datetime" ></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime presentation="date" [showDefaultButtons]="true" formControlName="endDate" id="datetime" ></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-row class="ion-text-center">
+      <ion-col size="6">
+        <ion-button type="submit" color="primary" expand="block">
+          Filter
+        </ion-button>
+      </ion-col>
+      <ion-col size="6" >
+        <ion-button [disabled]="isResponseEmpy" type="button" color="danger" expand="block" (click)="downloadReport(filterForm.value);">
+          Download Report
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+  <ion-card *ngFor="let loadetail of filterList; let i = index">
+    <ion-item color="primary">
+      <ion-icon name="prism-outline" slot="start"></ion-icon>
+      <ion-label>{{loadetail.truckVehicleNo}}</ion-label>
+      <ion-icon *ngIf="!loadetail.paymentStatus" color="light" slot="end" fill="outline" name="create-outline" (click)="updatePaymentStatus(loadetail.loadId)"></ion-icon>
+      <ion-icon color="light" name="eye-outline" slot="end" (click)="onView(loadetail.loadId)"></ion-icon>
+    </ion-item>
+  
+    <ion-card-header>
+        <ion-card-subtitle><b>Owner name: </b>{{loadetail.truckOwnerName}}</ion-card-subtitle>
+        <ion-card-subtitle><b>Product : </b>{{loadetail.productName}}</ion-card-subtitle>
+        <ion-card-subtitle><b>Load Unit : </b>{{loadetail.loadUnit}} Units</ion-card-subtitle>
+        <ion-card-subtitle><b>Load Amount : </b>&#x20B9;.{{loadetail.totalAmt}}</ion-card-subtitle>
+        <ion-card-subtitle><b>Payment Type : </b>{{loadetail.paymentType === true ? 'Cash' : 'Credit'}}</ion-card-subtitle>
+        <ion-card-subtitle color="success" *ngIf="loadetail.paymentStatus"><b>Payment Status : </b>Success</ion-card-subtitle>
+        <ion-card-subtitle color="danger" *ngIf="!loadetail.paymentStatus"><b>Payment Status : </b>Pending</ion-card-subtitle>
+        <ion-card-subtitle><b>Loaded Date : </b>{{loadetail.loadDate | date: 'dd-MM-yyyy hh:mm a'}}</ion-card-subtitle>
+      </ion-card-header>
+  </ion-card>
+  <div *ngIf="isResponseEmpy">
+    <ion-item>
+      <ion-text>
+        No Data Found
+      </ion-text>
+    </ion-item>
+  </div>
+</ion-content>
+

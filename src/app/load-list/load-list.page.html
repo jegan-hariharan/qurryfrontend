@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{this.quarryName}} - Load List</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let loadetail of loadList; let i = index">
+    <ion-item color="primary">
+      <ion-icon name="prism-outline" slot="start"></ion-icon>
+      <ion-label>{{loadetail.truckVehicleNo}}</ion-label>
+      <ion-icon *ngIf="!loadetail.paymentStatus" color="light" slot="end" fill="outline" name="create-outline" (click)="updatePaymentStatus(loadetail.loadId)"></ion-icon>
+      <ion-icon color="light" name="eye-outline" slot="end" (click)="onView(loadetail.loadId)"></ion-icon>
+    </ion-item>
+  
+    <ion-card-header>
+        <ion-card-subtitle><b>Owner name: </b>{{loadetail.truckOwnerName}}</ion-card-subtitle>
+        <ion-card-subtitle><b>Product : </b>{{loadetail.productName}}</ion-card-subtitle>
+        <ion-card-subtitle><b>Load Unit : </b>{{loadetail.loadUnit}} Units</ion-card-subtitle>
+        <ion-card-subtitle><b>Load Amount : </b>&#x20B9;.{{loadetail.totalAmt}}</ion-card-subtitle>
+        <ion-card-subtitle><b>Payment Type : </b>{{loadetail.paymentType === true ? 'Cash' : 'Credit'}}</ion-card-subtitle>
+        <ion-card-subtitle color="success" *ngIf="loadetail.paymentStatus"><b>Payment Status : </b>Success</ion-card-subtitle>
+        <ion-card-subtitle color="danger" *ngIf="!loadetail.paymentStatus"><b>Payment Status : </b>Pending</ion-card-subtitle>
+        <ion-card-subtitle><b>Loaded Date : </b>{{loadetail.loadDate | date: 'dd-MM-yyyy hh:mm a'}}</ion-card-subtitle>
+      </ion-card-header>
+  </ion-card>
+</ion-content>

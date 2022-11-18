@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>User List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="ion-text-center">
+    <ion-col size="12">
+      <ion-button type="button" color="primary" expand="block" (click)="createUser()">
+        Create User
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <div *ngIf="managerListCount > 0">
+    <ion-card *ngFor="let manager of usersList.managerList;">
+      <ion-item>
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>{{manager.name}}</ion-label>
+        <ion-icon color="primary" slot="end" name="create-outline" (click)="editUser(manager.id, 'manager')"></ion-icon>
+      </ion-item>
+    
+      <ion-card-header>
+          <ion-card-subtitle><b>Phone Number: </b>{{manager.phone}}</ion-card-subtitle>
+          <ion-card-subtitle><b>Email: </b>{{manager.email}}</ion-card-subtitle>
+          <ion-card-subtitle><b>Role: </b>Manager</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </div>  
+  <div *ngIf="employeeListCount > 0">
+    <ion-card *ngFor="let employee of usersList.employeeList;">
+      <ion-item>
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>{{employee.name}}</ion-label>
+        <ion-icon color="primary" slot="end" name="create-outline" (click)="editUser(employee.employeeId, 'employee')"></ion-icon>
+      </ion-item>
+    
+      <ion-card-header>
+          <ion-card-subtitle><b>Phone Number: </b>{{employee.phone}}</ion-card-subtitle>
+          <ion-card-subtitle><b>Email: </b>{{employee.email}}</ion-card-subtitle>
+          <ion-card-subtitle><b>Role: </b>Entry Operator</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </div>  
+</ion-content>

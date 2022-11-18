@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{quarryName}} - Entry Out</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" offset-lg="3">
+        <ion-card>
+          <ion-card-header color="primary">
+            <ion-card-title class="ion-text-center">{{loadInfo.truckDetail.truckNo}}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6"><ion-label color="primary">Truck Owner</ion-label></ion-col>
+                  <ion-col size="6"><ion-label color="primary">Owner Mobile No.</ion-label></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="6">{{loadInfo.truckOwner.truckOwnerName}}</ion-col>
+                  <ion-col size="6">{{loadInfo.truckOwner.truckMobileNo}}</ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+            <ion-item>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label color="primary">Address</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-text><ion-text>{{loadInfo.truckOwner.truckOwnerAddress}}</ion-text></ion-text>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+            <ion-item>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6"><ion-label color="primary">Drive Name</ion-label></ion-col>
+                  <ion-col size="6"><ion-label color="primary">Drive Mobiel No.</ion-label></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="6">{{loadInfo.truckDriverDetail.driverName}}</ion-col>
+                  <ion-col size="6">{{loadInfo.truckDriverDetail.driverMobileNo}}</ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+            <ion-item>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6"><ion-label color="primary">Load Status</ion-label></ion-col>
+                  <ion-col size="6"><ion-label color="primary">Entry Status</ion-label></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="6">{{loadStatus}}</ion-col>
+                  <ion-col size="6">{{entryStatus}}</ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+            <ion-item>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label color="primary">Truck In Time</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-text><ion-text>{{loadInfo.vehicleInTime | date: 'dd-MM-yyyy hh:mm a'}}</ion-text></ion-text>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+            <ion-row class="ion-text-center">
+              <ion-col size="12">
+                <div *ngIf="!this.loadInfo.entryStatus">
+                  <ion-button type="button" color="primary" expand="block" (click)="onClickGeneratePass()">
+                    Truck Exit
+                  </ion-button>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
