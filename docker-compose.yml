@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+ api:
+   container_name: flaskapp
+   image: flaskapp:v1
+   ports:
+    - "5000:5000"
+   environment:
+    - PSQL_URL=postgresql://postgres:mysecretpassword@some-postgres/postgres
+
+ postgres:
+    image: postgres:14.1-alpine
+    container_name : some-postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    volumes :
+      - /home/leena/Desktop/data:/var/lib/postgresql/data
